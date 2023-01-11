@@ -25,10 +25,7 @@ const email = document.querySelector("input");
 const message = document.querySelector("textarea");
 const button = document.querySelector("button");
 const FEEDBACK_FORM = "feedback-form-state";
-const formData = {
-    email: " ",
-    message: " "
-};
+const formData = {};
 
 const handleInput = (event) => {
     formData[event.target.name] = event.target.value;
