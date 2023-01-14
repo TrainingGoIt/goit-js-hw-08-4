@@ -25,23 +25,23 @@ const email = document.querySelector("input");
 const message = document.querySelector("textarea");
 const button = document.querySelector("button");
 const FEEDBACK_FORM = "feedback-form-state";
-const formData = {};
+
+const formData = JSON.parse(localStorage.getItem(FEEDBACK_FORM)) || {};
 
 const handleInput = (event) => {
     formData[event.target.name] = event.target.value;
-    localStorage.setItem(FEEDBACK_FORM, JSON.stringify(formData));
-    
+  localStorage.setItem(FEEDBACK_FORM, JSON.stringify(formData));
 };
 
 form.addEventListener("input", throttle(handleInput,500));
 
-
 if (localStorage.getItem(FEEDBACK_FORM)) {
-    const valueFormString = localStorage.getItem(FEEDBACK_FORM)
+
     try {
-        const valueForm = JSON.parse(valueFormString);
-        email.value = valueForm.email;
-        message.value = valueForm.message;
+        const valueForm = JSON.parse(localStorage.getItem(FEEDBACK_FORM));
+        email.value = valueForm.email || "";
+        message.value = valueForm.message || "";
+        
     } catch (error) {
     console.log(error.name); 
     console.log(error.message);
